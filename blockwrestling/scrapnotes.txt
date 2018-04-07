@@ -1,0 +1,101 @@
+
+
+a place for me to paste and save stuff I want to reference later
+
+wallet
+Mnemonic:      brisk oppose jaguar nest shift engine regret frown find sauce diesel venture
+
+
+saving the address of the contract
+
+Running migration: 2_deploy_contracts.js
+  Deploying Wrestling...
+  ... 0x539be9921004eff63044754bd456be9f0bacea208ea68fffda49ab1193dea091
+  Wrestling: 0xc1e63497ab43cddf2d4a74c95cea238f963c9560
+Saving successful migration to network...
+  ... 0xd853c2fdbbbe46d9527bcfeeaf855da1e4bd51d313bb2df9738f6cb850462865
+
+confirmed in ganache
+  Transaction: 0x539be9921004eff63044754bd456be9f0bacea208ea68fffda49ab1193dea091
+  Contract created: 0xc1e63497ab43cddf2d4a74c95cea238f963c9560
+  Gas usage: 702738
+  Block Number: 3
+  Block Time: Fri Apr 06 2018 21:37:57 GMT-0600 (MDT)
+
+
+when this was done
+  Jasons-MacBook-Pro:blockwrestling jasonmerecki$ truffle console --network development
+  truffle(development)> account0 = web3.eth.accounts[0]
+we got the right accounts b/c the truffle-config.js pointed the network named development to our local ganache
+
+
+calling the register method also creates a block:
+
+truffle(development)> WrestlingInstance.registerAsAnOpponent({from: account1})
+{ tx: '0x071bf608558e3d30d0cf3b36397f17a34656d4b88871fb7c6a2046bc02f06b02',
+  receipt:
+   { transactionHash: '0x071bf608558e3d30d0cf3b36397f17a34656d4b88871fb7c6a2046bc02f06b02',
+     transactionIndex: 0,
+     blockHash: '0xb29e2a37e66584766870d7bc5b3043661ae6bc761aa3bbb15da4f7835b0ef6ba',
+     blockNumber: 5,
+     gasUsed: 43892,
+     cumulativeGasUsed: 43892,
+     contractAddress: null,
+     logs: [ [Object] ],
+     status: '0x01',
+
+
+firing the events also wil create a block and use gas to calculate the winner (note EndOfWrestlingEvent)
+
+truffle(development)> WrestlingInstance.wrestle({from: account1, value: web3.toWei(20, "ether")})
+{ tx: '0x7358c5ae3657bf0e383d7a02d1b9abab99797c3a5c6d0409061905eaae0e9d9f',
+  receipt:
+   { transactionHash: '0x7358c5ae3657bf0e383d7a02d1b9abab99797c3a5c6d0409061905eaae0e9d9f',
+     transactionIndex: 0,
+     blockHash: '0xc55968a32eb24cf1f70b1541893b9f1f8c45bb4f4f3aa5868b25c7c2d2944024',
+     blockNumber: 9,
+     gasUsed: 82660,
+     cumulativeGasUsed: 82660,
+     contractAddress: null,
+     logs: [ [Object] ],
+     status: '0x01',
+
+  logs:
+   [ { logIndex: 0,
+       transactionIndex: 0,
+       transactionHash: '0x7358c5ae3657bf0e383d7a02d1b9abab99797c3a5c6d0409061905eaae0e9d9f',
+       blockHash: '0xc55968a32eb24cf1f70b1541893b9f1f8c45bb4f4f3aa5868b25c7c2d2944024',
+       blockNumber: 9,
+       address: '0xc1e63497ab43cddf2d4a74c95cea238f963c9560',
+       type: 'mined',
+       event: 'EndOfWrestlingEvent',
+
+
+WrestlingInstance.withdraw({from: account1})
+
+truffle(development)> WrestlingInstance.withdraw({from: account1})
+{ tx: '0x3b8a2a5c9d55a81a42d420e497964c7fa0d1650ccf4aa10c8d2f0883c407a6af',
+  receipt:
+   { transactionHash: '0x3b8a2a5c9d55a81a42d420e497964c7fa0d1650ccf4aa10c8d2f0883c407a6af',
+     transactionIndex: 0,
+     blockHash: '0x8d1f0bd75e11de1e51f3c6968420c00e26ade53bfc5891999608f4bc11a4ebf3',
+     blockNumber: 10,
+     gasUsed: 19734,
+     cumulativeGasUsed: 19734,
+     contractAddress: null,
+     logs: [],
+     status: '0x01',
+     logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000' },
+  logs: [] }
+truffle(development)>
+
+
+confirmed the balance changed:
+
+truffle(development)> account1.getBalance()
+TypeError: account1.getBalance is not a function
+truffle(development)> web3.eth.getBalance(account1)
+BigNumber { s: 1, e: 20, c: [ 1069791, 48700000000000 ] }
+truffle(development)> web3.eth.getBalance(account0)
+BigNumber { s: 1, e: 19, c: [ 928876, 28900000000000 ] }
+
