@@ -99,3 +99,102 @@ BigNumber { s: 1, e: 20, c: [ 1069791, 48700000000000 ] }
 truffle(development)> web3.eth.getBalance(account0)
 BigNumber { s: 1, e: 19, c: [ 928876, 28900000000000 ] }
 
+The ether balance of your account, which you retrieve with web3.eth.getBalance(YOUR_ADDRESS).
+The MetaCoin balance stored in the contract, which you retrieve with contractAddress.checkBalance(YOUR_ADDRESS).
+
+
+
+
+/Volumes/BLOCKCHAIN
+
+
+
+
+du -a / | sort -n -r | head -n 10
+du -a /Applications | sort -n -r | head -n 10
+
+writing genesis block
+Jasons-MacBook-Pro:blockwrestling jasonmerecki$ geth --datadir=./chaindata/ init ./genesis.json
+INFO [04-07|11:07:29] Maximum peer count                       ETH=25 LES=0 total=25
+INFO [04-07|11:07:29] Allocated cache and file handles         database=/Users/jasonmerecki/wrkspaces/blockstuff/blockwrestling/chaindata/geth/chaindata cache=16 handles=16
+INFO [04-07|11:07:29] Writing custom genesis block 
+INFO [04-07|11:07:29] Persisted trie from memory database      nodes=0 size=0.00B time=12.098µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [04-07|11:07:29] Successfully wrote genesis state         database=chaindata                                                                        hash=0613eb…9a64e7
+INFO [04-07|11:07:29] Allocated cache and file handles         database=/Users/jasonmerecki/wrkspaces/blockstuff/blockwrestling/chaindata/geth/lightchaindata cache=16 handles=16
+INFO [04-07|11:07:29] Writing custom genesis block 
+INFO [04-07|11:07:29] Persisted trie from memory database      nodes=0 size=0.00B time=1.753µs  gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [04-07|11:07:29] Successfully wrote genesis state         database=lightchaindata                                                                        hash=0613eb…9a64e7
+Jasons-MacBook-Pro:blockwrestling jasonmerecki$ 
+
+starting geth
+NFO [04-07|11:08:08] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [04-07|11:08:08] Starting P2P networking 
+INFO [04-07|11:08:10] UDP listener up                          self=enode://9b3968de81dc09143ff4f97e8e9c2bb61013020bcf69186a1a0e021b4b037596b867aab896a5b0fd3710da198821d84820975a97065209b33e98a4c72c794376@[::]:30303
+INFO [04-07|11:08:10] RLPx listener up                         self=enode://9b3968de81dc09143ff4f97e8e9c2bb61013020bcf69186a1a0e021b4b037596b867aab896a5b0fd3710da198821d84820975a97065209b33e98a4c72c794376@[::]:30303
+INFO [04-07|11:08:10] IPC endpoint opened                      url=/Users/jasonmerecki/wrkspaces/blockstuff/blockwrestling/chaindata/geth.ipc
+INFO [04-07|11:08:10] HTTP endpoint opened                     url=http://127.0.0.1:8545                                                      cors= vhosts=localhost
+
+
+
+geth --port 3020 --networkid 58342 --nodiscover --datadir="privchain" --maxpeers=0 --ipcpath $HOME/.ethereum/geth.ipc
+[2017-08-18 23:40:50.327] [INFO] Sockets/3 - Connect to {"path":"/home/someone/.ethereum/geth.ipc"}
+
+
+geth --datadir=./chaindata/ --rpc --ipcpath $HOME/Library/Ethereum/geth.ipc
+
+
+geth --datadir=./chaindata/ --ipcpath $HOME/Library/Ethereum/geth.ipc
+
+INFO [04-08|20:42:58] IPC endpoint opened                      url=/Users/jasonmerecki/wrkspaces/blockstuff/blockwrestling/chaindata/geth.ipc
+
+
+open -a 'Ethereum Wallet' –rpc http://127.0.0.1:8545
+
+ps -ef | grep 'Ethereum Wallet.app'
+
+exec "/Applications/MyApp.app/Contents/MacOS/MyAppExecutableFile" [arguments]
+
+exec "/Applications/Ethereum Wallet.app/Contents/MacOS/Ethereum Wallet" –rpc http://127.0.0.1:8545
+
+
+open -a /Applications/Mist.app --args --rpc /var/folders/y1/jynwfrwj411bxck8whqgcbr00000gq/T/ethereum_dev_mode/geth.ipc
+
+open -a /Applications/Mist.app --args --rpc /Users/jasonmerecki/wrkspaces/blockstuff/blockwrestling/chaindata/geth.ipc
+
+
+open -a '/Applications/Ethereum Wallet.app' --args –-rpc 127.0.0.1:8545
+
+open -a /Applications/Ethereum\ Wallet.app --args –-rpc /Users/jasonmerecki/wrkspaces/blockstuff/blockwrestling/chaindata/geth.ipc
+
+AHA WORKS IF I SPECIFY THE EXPECTED IPC FILE:
+
+open -a '/Applications/Ethereum Wallet.app' --args –rpc $HOME/Library/Ethereum/geth.ipc
+
+
+create account as hock3ystick
+You can find your keyfiles folder using the main menu -> Accounts -> Backup -> Accounts. Keep a copy of the "keystore" folder where you can't lose it!
+
+
+Jasons-MacBook-Pro:logs jasonmerecki$ geth attach
+Welcome to the Geth JavaScript console!
+
+
+instance: Geth/v1.8.3-stable-329ac18e/darwin-amd64/go1.10
+coinbase: 0x317cd4881a3011a6b6d307a43a7fa22b4a3ac5b0
+at block: 0 (Wed, 31 Dec 1969 17:00:00 MST)
+ datadir: /Users/jasonmerecki/wrkspaces/blockstuff/blockwrestling/chaindata
+ modules: admin:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+
+
+ourTestNet: {
+      host: "127.0.0.1",
+      port: 8545,
+      network_id: "*" 
+    }
+
+
+personal.unlockAccount('0x317cd4881A3011A6b6D307a43a7fa22B4a3AC5B0', 'hock3ystick')
+
+
+
+

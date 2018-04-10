@@ -1,5 +1,6 @@
 pragma solidity ^0.4.17;
 
+// see: http://truffleframework.com/docs/getting_started/migrations
 contract Migrations {
   address public owner;
   uint public last_completed_migration;
