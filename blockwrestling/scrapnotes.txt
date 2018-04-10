@@ -162,13 +162,13 @@ open -a /Applications/Mist.app --args --rpc /var/folders/y1/jynwfrwj411bxck8whqg
 open -a /Applications/Mist.app --args --rpc /Users/jasonmerecki/wrkspaces/blockstuff/blockwrestling/chaindata/geth.ipc
 
 
-open -a '/Applications/Ethereum Wallet.app' --args –-rpc 127.0.0.1:8545
+open -a '/Applications/Ethereum Wallet.app' --args -rpc 127.0.0.1:8545
 
 open -a /Applications/Ethereum\ Wallet.app --args –-rpc /Users/jasonmerecki/wrkspaces/blockstuff/blockwrestling/chaindata/geth.ipc
 
 AHA WORKS IF I SPECIFY THE EXPECTED IPC FILE:
 
-open -a '/Applications/Ethereum Wallet.app' --args –rpc $HOME/Library/Ethereum/geth.ipc
+open -a '/Applications/Ethereum Wallet.app' --args –ipc $HOME/Library/Ethereum/geth.ipc
 
 
 create account as hock3ystick
@@ -195,6 +195,29 @@ ourTestNet: {
 
 personal.unlockAccount('0x317cd4881A3011A6b6D307a43a7fa22B4a3AC5B0', 'hock3ystick')
 
+need to start mining too, before migration
 
+unning migration: 1_initial_migration.js
+  Deploying Migrations...
+  ... 0xb2c770eea4f85253fe0a2c7dbee378c02abbfa0aaeb627f107c12bc6cf740476
+  Migrations: 0xecbd664e3d16ecec4f10b3461a024e8fc3f0ab26
+Saving successful migration to network...
+  ... 0xcc48f846b12f990b49bde0187544c569f15bb7b0b96edcf6fc78ac8b8d18b0e1
+Saving artifacts...
+Running migration: 2_deploy_contracts.js
+  Deploying Wrestling...
+  ... 0x0ddde02a10964578ccc14f754e749089edc7135ada0545117cf9d8244923f6f1
+  Wrestling: 0x6dd774123736a61e3649da4e8a96cceaf367f184
+Saving successful migration to network...
+  ... 0xf1ac734ab8ba9025432091d3b2d741b4207b0752f4fdbe879445db1ff3c87b89
+Saving artifacts...
+
+
+
+truffle(ourTestNet)> Wrestling.address
+'0x6dd774123736a61e3649da4e8a96cceaf367f184'
+truffle(ourTestNet)> JSON.stringify(Wrestling.abi)
+'[{"constant":true,"inputs":[],"name":"theWinner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"wrestler2","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"wrestler1Played","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"wrestler1","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"gameFinished","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"wrestler2Played","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"wrestler1","type":"address"},{"indexed":false,"name":"wrestler2","type":"address"}],"name":"WrestlingStartsEvent","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"wrestler1Deposit","type":"uint256"},{"indexed":false,"name":"wrestler2Deposit","type":"uint256"}],"name":"EndOfRoundEvent","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"winner","type":"address"},{"indexed":false,"name":"gains","type":"uint256"}],"name":"EndOfWrestlingEvent","type":"event"},{"constant":false,"inputs":[],"name":"registerAsAnOpponent","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"wrestle","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"withdraw","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]'
+truffle(ourTestNet)> 
 
 
